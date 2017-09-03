@@ -1,0 +1,252 @@
+<form id="addForm" #addForm="ngForm" class="col s12" (ngSubmit)="onSubmit()">
+    <!--Header-->
+    <form-header>
+
+    </form-header>
+
+    <!--Body-->
+    <form-body>
+        <div class="md-form form-sm">
+            <i class="fa fa-info prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="productName" name="productName" type="text" class="validate form-control"
+                required minlength="4" maxlength="24" [(ngModel)]=entity.productName #productName="ngModel">
+            <label for="productName">{{entity.name}} Name</label>
+            <div *ngIf="productName.errors && (productName.dirty || productName.touched)">
+                <div [hidden]="!productName.errors.required">
+                    <small class="text-danger">Name is required.</small>
+                </div>
+                <div [hidden]="!productName.errors.minlength">
+                    <small class="text-danger">Name must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!productName.errors.maxlength">
+                    <small class="text-danger">Name cannot be more than 24 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-paragraph prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="productDescription" name="productDescription" type="text" class="validate form-control"
+                required minlength="4" maxlength="24" [(ngModel)]=entity.productDescription #productDescription="ngModel">
+            <label for="productDescription">{{entity.name}} Description</label>
+            <div *ngIf="productDescription.errors && (productDescription.dirty || productDescription.touched)">
+                <div [hidden]="!productDescription.errors.required">
+                    <small class="text-danger">Description is required.</small>
+                </div>
+                <div [hidden]="!productDescription.errors.minlength">
+                    <small class="text-danger">Description must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!productDescription.errors.maxlength">
+                    <small class="text-danger">Description cannot be more than 24 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="productCode" name="productCode" type="text" class="validate form-control"
+                required minlength="4" maxlength="4" [(ngModel)]=entity.productCode #productCode="ngModel">
+            <label for="productCode">{{entity.name}} Code</label>
+            <div *ngIf="productCode.errors && (productCode.dirty || productCode.touched)">
+                <div [hidden]="!productCode.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!productCode.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!productCode.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 4 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <div [mdbActive]="mode.add" [disabled]="mode.view" class="dropdown" dropdown id="brandId" name="brandId" type="text" class="validate form-control"
+                required [(ngModel)]=entity.brandId #brandId="ngModel">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle waves-light" ripple-radius>
+                    {{brandDropdownHeader}}
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" [ngValue]="brand.brandId" (click)=setBrand(brand) *ngFor="let brand of brandList;">{{brand.brandName}} - {{brand.brandCode}}</a>
+                </div>
+            </div>
+            <label for="brandId">{{entity.brandId}} Code</label>
+            <div *ngIf="brandId.errors && (brandId.dirty || brandId.touched)">
+                <div [hidden]="!brandId.errors.required">
+                    <small class="text-danger">Brand Id is required.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <div [mdbActive]="mode.add" [disabled]="mode.view" class="dropdown" dropdown id="typeId" name="typeId" type="text" class="validate form-control"
+                required [(ngModel)]=entity.typeId #typeId="ngModel">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle waves-light" ripple-radius>
+                    {{typeDropdownHeader}}
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" [ngValue]="type.typeId" (click)=setType(type) *ngFor="let type of typeList;">{{type.typeName}} - {{type.typeCode}}</a>
+                </div>
+            </div>
+            <label for="typeId">{{entity.typeId}} Code</label>
+            <div *ngIf="typeId.errors && (typeId.dirty || typeId.touched)">
+                <div [hidden]="!typeId.errors.required">
+                    <small class="text-danger">Type Id is required.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-money prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="costPrice" name="costPrice" type="number" class="validate form-control"
+                required maxlength="10" [(ngModel)]=entity.costPrice #costPrice="ngModel">
+            <label for="costPrice">Cost Price</label>
+            <div *ngIf="costPrice.errors && (costPrice.dirty || costPrice.touched)">
+                <div [hidden]="!costPrice.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!costPrice.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!costPrice.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-calendar prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="expiryInDays" name="expiryInDays" type="number" class="validate form-control"
+                required maxlength="10" [(ngModel)]=entity.expiryInDays #expiryInDays="ngModel">
+            <label for="expiryInDays">Expiry in Days</label>
+            <div *ngIf="expiryInDays.errors && (expiryInDays.dirty || expiryInDays.touched)">
+                <div [hidden]="!expiryInDays.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!expiryInDays.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!expiryInDays.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="manufacturersCode" name="manufacturersCode" type="text" class="validate form-control"
+                required maxlength="10" [(ngModel)]=entity.manufacturersCode #manufacturersCode="ngModel">
+            <label for="manufacturersCode">Manufacturers Code</label>
+            <div *ngIf="manufacturersCode.errors && (manufacturersCode.dirty || manufacturersCode.touched)">
+                <div [hidden]="!manufacturersCode.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!manufacturersCode.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!manufacturersCode.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="volume" name="volume" type="text" class="validate form-control"
+                required maxlength="10" [(ngModel)]=entity.volume #volume="ngModel">
+            <label for="volume">Volume</label>
+            <div *ngIf="volume.errors && (volume.dirty || volume.touched)">
+                <div [hidden]="!volume.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!volume.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!volume.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-money prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="retailDeliveryCharges" name="retailDeliveryCharges" type="number"
+                class="validate form-control" required maxlength="10" [(ngModel)]=entity.retailDeliveryCharges #retailDeliveryCharges="ngModel">
+            <label for="retailDeliveryCharges">Retail Delivery Charges</label>
+            <div *ngIf="retailDeliveryCharges.errors && (retailDeliveryCharges.dirty || retailDeliveryCharges.touched)">
+                <div [hidden]="!retailDeliveryCharges.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!retailDeliveryCharges.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!retailDeliveryCharges.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-money prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="retailSellingPrice" name="retailSellingPrice" type="number" class="validate form-control"
+                required maxlength="10" [(ngModel)]=entity.retailSellingPrice #retailSellingPrice="ngModel">
+            <label for="retailSellingPrice">Retail Selling Price</label>
+            <div *ngIf="retailSellingPrice.errors && (retailSellingPrice.dirty || retailSellingPrice.touched)">
+                <div [hidden]="!retailSellingPrice.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!retailSellingPrice.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!retailSellingPrice.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-money prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="wholesaleDeliveryCharges" name="wholesaleDeliveryCharges" type="number"
+                class="validate form-control" required maxlength="10" [(ngModel)]=entity.wholesaleDeliveryCharges #wholesaleDeliveryCharges="ngModel">
+            <label for="wholesaleDeliveryCharges">Wholesale Delivery Charges</label>
+            <div *ngIf="wholesaleDeliveryCharges.errors && (wholesaleDeliveryCharges.dirty || wholesaleDeliveryCharges.touched)">
+                <div [hidden]="!wholesaleDeliveryCharges.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!wholesaleDeliveryCharges.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!wholesaleDeliveryCharges.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-money prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="wholesaleSellingPrice" name="wholesaleSellingPrice" type="number"
+                class="validate form-control" required maxlength="10" [(ngModel)]=entity.wholesaleSellingPrice #wholesaleSellingPrice="ngModel">
+            <label for="wholesaleSellingPrice">Wholesale Selling Price</label>
+            <div *ngIf="wholesaleSellingPrice.errors && (wholesaleSellingPrice.dirty || wholesaleSellingPrice.touched)">
+                <div [hidden]="!wholesaleSellingPrice.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!wholesaleSellingPrice.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!wholesaleSellingPrice.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 10 characters long.</small>
+                </div>
+            </div>
+        </div>
+    </form-body>
+
+    <!--Footer-->
+    <form-footer>
+        <div class="md-form">
+            <button *ngIf="mode.add || mode.update" [disabled]="!addForm.valid" type="submit" class="btn btn-primary" ripple-radius>{{mode.operation}}</button>
+        </div>
+    </form-footer>
+</form>

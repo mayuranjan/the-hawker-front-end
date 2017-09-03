@@ -1,0 +1,97 @@
+<div class="mydp picker" [ngClass]="{'picker--opened': showSelector}" [ngStyle]="{'width': opts.showInputField ? opts.width : null, 'border': opts.inline ? 'none' : null, '': !showSelector}">
+    <!--<div class="selectiongroup" *ngIf="!opts.inline">-->
+        <div class="md-form">
+            <label>
+                
+                <input *ngIf="opts.showInputField" type="text" class="form-control mydp-date" [attr.aria-label]="opts.ariaLabelInputField" (click)="opts.openSelectorOnInputClick&&!opts.editableDateField&&openBtnClicked()" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate, 'inputnoteditable': opts.openSelectorOnInputClick&&!opts.editableDateField, 'selectiondisabled': opts.componentDisabled}"
+                        placeholder="{{placeholder}}" [myinputautofill]="autoFillOpts" [ngModel]="selectionDayTxt" (ngModelChange)="onUserDateInput($event)" [value]="selectionDayTxt"
+                    (focus)="opts.editableDateField&&onFocusInput($event)" (blur)="opts.editableDateField&&onBlurInput($event)" [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField" autocomplete="off">
+            </label>
+        </div>
+        
+        <!--<div class="selbtngroup" [style.height]="opts.height">
+            <button type="button" [attr.aria-label]="opts.ariaLabelOpenCalendar" class="btnpicker" (click)="openBtnClicked()" [ngClass]="{'btnpickerenabled': !opts.componentDisabled, 'btnpickerdisabled': opts.componentDisabled, 'btnleftborder': opts.showInputField||selectionDayTxt.length>0&&opts.showClearDateBtn, 'btnleftborderradius': !opts.showClearDateBtn&&!opts.showInputField||!opts.showInputField&&selectionDayTxt.length===0}" [disabled]="opts.componentDisabled">
+                <span class="mydpicon icon-mydpcalendar"></span>
+            </button>
+        </div>-->
+    <!--</div>-->
+    <div class="selector picker__holder" #divFocus  [mydpfocus]="opts.inline?'0':'1'" [ngStyle]="{'bottom': getSelectorTopPosition()}" [ngClass]="{'inlinedp': opts.inline, 'alignselectorright': opts.alignSelectorRight, 'selectorarrow': opts.showSelectorArrow&&!opts.inline, 'selectorarrowleft': opts.showSelectorArrow&&!opts.alignSelectorRight&&!opts.inline, 'selectorarrowright': opts.showSelectorArrow&&opts.alignSelectorRight&&!opts.inline}" tabindex="0">
+        <div class="picker__frame picker__box">
+            <div class="picker__header">
+                <div class="picker__date-display">
+                    <div class="picker__weekday-display">{{ weekText(getWeekday(tmp)) }}</div>
+                    <div class="picker__month-display">
+                        <div>{{ monthText(tmp.month) }}</div>
+                    </div>
+                    <div class="picker__day-display">
+                        <div>{{ tmp.day }}</div>
+                    </div>
+                    <div class="picker__year-display">
+                        <div>{{ tmp.year }}</div>
+                    </div>
+                </div>
+                <select class="picker__select--year" [(ngModel)]="visibleMonth.year" (ngModelChange)="onUserYearInput($event)">
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+                <select class="picker__select--month" [(ngModel)]="visibleMonth.monthTxt" (ngModelChange)="onUserMonthInput($event)">
+                    <option *ngFor="let month of months" [value]="month.short">{{ month.label }}</option>
+                </select>
+                <button class="picker__nav--prev" data-nav="-1" role="button" aria-controls="date-picker-example_table" title="Previous month" (click)="prevMonth()" [disabled]="prevMonthDisabled" [ngClass]="{'headerbtnenabled': !prevMonthDisabled, 'headerbtndisabled': prevMonthDisabled}"></button>
+                <button class="picker__nav--next" data-nav="1" role="button" aria-controls="date-picker-example_table" title="Next month" (click)="nextMonth()" [disabled]="nextMonthDisabled" [ngClass]="{'headerbtnenabled': !nextMonthDisabled, 'headerbtndisabled': nextMonthDisabled}"></button>
+                <!--<div class="col">
+                    <div class="row">
+                        <div class="col-6 picker__controll">
+                            <div class="headerbtncell">
+                                <button type="button" [attr.aria-label]="opts.ariaLabelPrevMonth" class="headerbtn picker__nav--prev" (click)="prevMonth()" [disabled]="prevMonthDisabled" [ngClass]="{'headerbtnenabled': !prevMonthDisabled, 'headerbtndisabled': prevMonthDisabled}"></button
+                            ></div>
+                            <div class="headermonthtxt">
+                                <input type="text" *ngIf="editMonth" class="monthinput" maxlength="10" [mydpfocus]="2" [value]="visibleMonth.monthTxt" [ngModel]="visibleMonth.monthTxt" (ngModelChange)="onUserMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
+                                <button class="headerlabelbtn" type="button" [ngClass]="{'monthlabel': opts.editableMonthAndYear}" *ngIf="!editMonth" (click)="opts.editableMonthAndYear&&editMonthClicked($event)" tabindex="{{opts.editableMonthAndYear?'0':'-1'}}">{{visibleMonth.monthTxt}}</button>
+                            </div>
+                            <div class="headerbtncell">
+                                <button type="button" [attr.aria-label]="opts.ariaLabelNextMonth" class="headerbtn picker__nav--next" (click)="nextMonth()" [disabled]="nextMonthDisabled" [ngClass]="{'headerbtnenabled': !nextMonthDisabled, 'headerbtndisabled': nextMonthDisabled}"></button>
+                            </div>
+                        </div>
+                        <div class="col-6 picker__controll">
+                            <div class="headerbtncell">
+                                <button type="button" [attr.aria-label]="opts.ariaLabelPrevYear" class="headerbtn picker__nav--prev" (click)="prevYear()" [disabled]="prevYearDisabled" [ngClass]="{'headerbtnenabled': !prevYearDisabled, 'headerbtndisabled': prevYearDisabled}"></button>
+                            </div>
+                            <div class="headeryeartxt">
+                                <input type="text" *ngIf="editYear" class="yearinput" maxlength="4" [mydpfocus]="2" [value]="visibleMonth.year" [ngModel]="visibleMonth.year" (ngModelChange)="onUserYearInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
+                                <button class="headerlabelbtn" type="button" [ngClass]="{'yearlabel': opts.editableMonthAndYear}" *ngIf="!editYear" (click)="opts.editableMonthAndYear&&editYearClicked($event)" tabindex="{{opts.editableMonthAndYear?'0':'-1'}}">{{visibleMonth.year}}</button>
+                            </div>
+                            <div class="headerbtncell">
+                                <button type="button" [attr.aria-label]="opts.ariaLabelNextYear" class="headerbtn picker__nav--next" (click)="nextYear()" [disabled]="nextYearDisabled" [ngClass]="{'headerbtnenabled': !nextYearDisabled, 'headerbtndisabled': nextYearDisabled}"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <table class="picker__table">
+                <thead><tr><th class="picker__weekday weekdaytitleweeknbr" *ngIf="opts.showWeekNumbers&&opts.firstDayOfWeek==='mo'">#</th><th class="picker__weekday" scope="col" *ngFor="let d of weekDays">{{d}}</th></tr></thead>
+                <tbody>
+                    <tr *ngFor="let w of dates">
+                        <td class="picker__day daycellweeknbr" *ngIf="opts.showWeekNumbers&&opts.firstDayOfWeek==='mo'">{{w.weekNbr}}</td>
+                        <td class="picker__day" *ngFor="let d of w.week" [ngClass]="{'picker__day--infocus':d.cmo===currMonthId&&!d.disabled, 'disabled': d.disabled, 'tablesingleday': d.cmo===currMonthId&&!d.disabled}">
+                            <div *ngIf="d.markedDate.marked" class="markdate" [ngStyle]="{'background-color': d.markedDate.color}"></div>
+                            <div class="picker__day" [ngClass]="{'picker__day--infocus':d.cmo===currMonthId,'picker__day--outfocus': (d.cmo===nextMonthId || d.cmo===prevMonthId), 'picker__day--today':d.currDay&&opts.markCurrentDay, 'picker__day--selected picker__day--highlighted':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===currMonthId}" (click)="!d.disabled&&cellClicked(d);$event.stopPropagation()" (keydown)="cellKeyDown($event, d)" tabindex="0">
+                                {{d.dateObj.day}}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="picker__footer">
+                <button type="button" class="picker__button--today" (click)="todayClicked()">
+                    {{opts.todayBtnTxt}}
+                </button>
+                <button type="button" class="picker__button--clear" (click)="removeBtnClicked()">
+                    {{opts.clearBtnTxt}}
+                </button>
+                <button type="button" class="picker__button--close" (click)="showSelector = false; removeInlineStyle();">
+                    {{opts.closeBtnTxt}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

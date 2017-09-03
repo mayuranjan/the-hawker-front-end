@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-md-4" *ngFor="let entity of entityList;" (mouseleave)="collapseAllIcons(i)">
+        <card-rotating #cards>
+            <!--Front Side-->
+            <div class="face front tp-box_side tp-box_front">
+                <!--Card-->
+                <div class="card card-cascade hoverable">
+
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight" ripple-radius>
+                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%2840%29.jpg" class="img-fluid" alt="">
+                        <a>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
+
+                    <!--Social buttons-->
+                    <div class="card-share">
+                        <a class="btn-floating btn-action primary-color-dark float-right" tooltip="Options" placement="bottom" ripple-radius (click)="toggleIcons(entity)"><i class="fa fa-cogs"></i></a>
+                        <div class="socials" [@iconsState]="entity.optionIcon">
+                            <!--Read-->
+                            <a type="button" tooltip="View" placement="bottom" class="btn-floating info-color" ripple-radius (click)="read(entity)"><i class="fa fa-envelope-open"></i></a>
+                            <!--Update-->
+                            <a type="button" tooltip="Update" placement="bottom" class="btn-floating warning-color" ripple-radius (click)="update(entity)"><i class="fa fa-edit"></i></a>
+                            <!--Delete -->
+                            <a type="button" tooltip="Delete" placement="bottom" class="btn-floating danger-color" ripple-radius (click)="delete(entity)"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                    <!--/Social buttons-->
+
+                    <!--Card content-->
+                    <div class="card-block">
+                        <!--Title-->
+                        <h4 class="card-title"><strong>NAME: </strong>{{entity.productName}}</h4>
+                        <h5><strong>CODE: </strong>{{entity.productCode}}</h5>
+                    </div>
+                    <!--/.Card content-->
+
+                    <!--Triggering button-->
+                    <a class="rotate-btn" data-card="card-1" (click)="cards.toggle()"><i class="fa fa-repeat"></i> Click here to rotate</a>
+
+
+                    <!-- Card footer -->
+                    <div class="card-data">
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i> 05/10/2015</li>
+                            <li><a href="#"><i class="fa fa-cubes"></i>#</a></li>
+                            <li><a href="#"><i class="fa fa-facebook"> </i>21</a></li>
+                            <li><a href="#"><i class="fa fa-twitter"> </i>5</a></li>
+                        </ul>
+                    </div>
+                    <!-- Card footer -->
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--/.Front Side-->
+
+            <!--Back Side-->
+            <div class="back tp-box_side tp-box_back">
+
+                <!--Content-->
+                <h4>About me</h4>
+                <hr>
+                <p>{{entity.productDescription}}</p>
+                <hr>
+                <!--Social Icons-->
+                <ul class="inline-ul">
+                    <li><a class="icons-sm fb-ic"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="icons-sm tw-ic"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a class="icons-sm li-ic"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+                <!--Triggering button-->
+                <a class="rotate-btn" data-card="card-1" (click)="cards.toggle()"><i class="fa fa-undo"></i> Click here to rotate back</a>
+
+            </div>
+            <!--/.Back Side-->
+        </card-rotating>
+    </div>
+</div>
+
+<!--Modal: Entity form-->
+<div *ngIf="isModalVisible" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #formModal="bs-modal" class="modal fade"
+    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <button type="button" class="close waves-effect waves-light" (click)="hideModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="title"><i class="fa" [ngClass]=mode.icon></i> {{entity.name}} - {{mode.operation}}</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+                <product-form [entity]=selectedEntity [mode]=mode (onUpsertSuccess)=hideModal()></product-form>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: Entity form-->

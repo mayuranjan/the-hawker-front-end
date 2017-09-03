@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../../src/app/typescripts/pro/autocomplete/components/completerItemComponent.ts"],"names":[],"mappings":"AAKC,CAAC","file":"completerItemComponent.js","sourceRoot":"","sourcesContent":["export interface CompleterItem {\r\n    title: string;\r\n    description?: string;\r\n    image?: string;\r\n    originalObject: any;\r\n};"]}

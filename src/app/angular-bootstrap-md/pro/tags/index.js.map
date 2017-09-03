@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../src/app/typescripts/pro/tags/index.ts"],"names":[],"mappings":"AAAA,cAAc,kBAAkB,CAAC;AACjC,cAAc,eAAe,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export * from './chipsComponent';\r\nexport * from './chipsModule';"]}

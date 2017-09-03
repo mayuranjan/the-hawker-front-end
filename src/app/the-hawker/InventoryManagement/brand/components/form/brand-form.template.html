@@ -1,0 +1,71 @@
+<form id="addBrandForm" #addBrandForm="ngForm" class="col s12" (ngSubmit)="onSubmit()">
+    <!--Header-->
+    <form-header>
+
+    </form-header>
+
+    <!--Body-->
+    <form-body>
+        <div class="md-form form-sm">
+            <i class="fa fa-info prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="brandName" name="brandName" type="text" class="validate form-control" required
+                minlength="4" maxlength="24" [(ngModel)]=entity.brandName #brandName="ngModel">
+            <label for="brandName">Brand Name</label>
+            <div *ngIf="brandName.errors && (brandName.dirty || brandName.touched)">
+                <div [hidden]="!brandName.errors.required">
+                    <small class="text-danger">Name is required.</small>
+                </div>
+                <div [hidden]="!brandName.errors.minlength">
+                    <small class="text-danger">Name must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!brandName.errors.maxlength">
+                    <small class="text-danger">Name cannot be more than 24 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-paragraph prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="brandDescription" name="brandDescription" type="text" class="validate form-control"
+                required minlength="4" maxlength="24" [(ngModel)]=entity.brandDescription #brandDescription="ngModel">
+            <label for="brandDescription">Brand Description</label>
+            <div *ngIf="brandDescription.errors && (brandDescription.dirty || brandDescription.touched)">
+                <div [hidden]="!brandDescription.errors.required">
+                    <small class="text-danger">Description is required.</small>
+                </div>
+                <div [hidden]="!brandDescription.errors.minlength">
+                    <small class="text-danger">Description must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!brandDescription.errors.maxlength">
+                    <small class="text-danger">Description cannot be more than 24 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="brandCode" name="brandCode" type="text" class="validate form-control" required
+                minlength="4" maxlength="4" [(ngModel)]=entity.brandCode #brandCode="ngModel">
+            <label for="brandCode">Brand Code</label>
+            <div *ngIf="brandCode.errors && (brandCode.dirty || brandCode.touched)">
+                <div [hidden]="!brandCode.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!brandCode.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!brandCode.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 4 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form-body>
+
+    <!--Footer-->
+    <form-footer>
+        <div class="md-form">
+            <button *ngIf="mode.add || mode.update" [disabled]="!addBrandForm.valid" type="submit" class="btn btn-primary" ripple-radius>{{mode.operation}}</button>
+        </div>
+    </form-footer>
+</form>

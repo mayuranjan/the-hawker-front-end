@@ -1,0 +1,89 @@
+<form id="addForm" #addForm="ngForm" class="col s12" (ngSubmit)="onSubmit()">
+    <!--Header-->
+    <form-header>
+
+    </form-header>
+
+    <!--Body-->
+    <form-body>
+        <div class="md-form form-sm">
+            <i class="fa fa-info prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="typeName" name="typeName" type="text" class="validate form-control" required
+                minlength="4" maxlength="24" [(ngModel)]=entity.typeName #typeName="ngModel">
+            <label for="typeName">{{entity.name}} Name</label>
+            <div *ngIf="typeName.errors && (typeName.dirty || typeName.touched)">
+                <div [hidden]="!typeName.errors.required">
+                    <small class="text-danger">Name is required.</small>
+                </div>
+                <div [hidden]="!typeName.errors.minlength">
+                    <small class="text-danger">Name must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!typeName.errors.maxlength">
+                    <small class="text-danger">Name cannot be more than 24 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-paragraph prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="typeDescription" name="typeDescription" type="text" class="validate form-control"
+                required minlength="4" maxlength="24" [(ngModel)]=entity.typeDescription #typeDescription="ngModel">
+            <label for="typeDescription">{{entity.name}} Description</label>
+            <div *ngIf="typeDescription.errors && (typeDescription.dirty || typeDescription.touched)">
+                <div [hidden]="!typeDescription.errors.required">
+                    <small class="text-danger">Description is required.</small>
+                </div>
+                <div [hidden]="!typeDescription.errors.minlength">
+                    <small class="text-danger">Description must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!typeDescription.errors.maxlength">
+                    <small class="text-danger">Description cannot be more than 24 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="typeCode" name="typeCode" type="text" class="validate form-control" required
+                minlength="4" maxlength="4" [(ngModel)]=entity.typeCode #typeCode="ngModel">
+            <label for="typeCode">{{entity.name}} Code</label>
+            <div *ngIf="typeCode.errors && (typeCode.dirty || typeCode.touched)">
+                <div [hidden]="!typeCode.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!typeCode.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!typeCode.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 4 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-barcode prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="typeCategory" name="typeCategory" type="text" class="validate form-control" required
+                 maxlength="40" [(ngModel)]=entity.typeCategory #typeCategory="ngModel">
+            <label for="typeCategory">{{entity.name}} Category</label>
+            <div *ngIf="typeCategory.errors && (typeCategory.dirty || typeCategory.touched)">
+                <div [hidden]="!typeCategory.errors.required">
+                    <small class="text-danger">Code is required.</small>
+                </div>
+                <div [hidden]="!typeCategory.errors.minlength">
+                    <small class="text-danger">Code must be at least 4 characters long.</small>
+                </div>
+                <div [hidden]="!typeCategory.errors.maxlength">
+                    <small class="text-danger">Code cannot be more than 4 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form-body>
+
+    <!--Footer-->
+    <form-footer>
+        <div class="md-form">
+            <button *ngIf="mode.add || mode.update" [disabled]="!addForm.valid" type="submit" class="btn btn-primary" ripple-radius>{{mode.operation}}</button>
+        </div>
+    </form-footer>
+</form>

@@ -1,0 +1,225 @@
+<!--<div class="col-lg-2 form-group trans-lang">
+    <label>
+        <div style="font-size:10px;color: #eff7fb;font-weight: normal;"> {{ 'HOME.SELECT' | translate }} </div>
+        <select #langSelect (change)="languageSelect(langSelect.value)" [(ngModel)]="selectedLanguage" id="selectedLanguage" class="form-control">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ lang }}</option>
+        </select>
+    </label>
+</div>-->
+
+<!--Double navigation-->
+<DoubleNavbar [fixedSidenav]="true" [navbarClass]="'fixed-top navbar-toggleable-md navbar-dark'" [scrolling]="true">
+    <!-- Sidebar navigation -->
+    <SideNav>
+        <li>
+            <div class="logo-wrapper waves-light">
+                <a href="#"><img src="http://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
+            </div>
+        </li>
+
+        <!--Social-->
+        <li>
+            <ul class="social">
+                <li><a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                <li><a class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
+                <li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                <li><a class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+            </ul>
+        </li>
+        <!--/Social-->
+        <!--Search Form-->
+        <li>
+            <form class="search-form" role="search">
+                <div class="form-group waves-light">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
+        </li>
+        <!--/.Search Form-->
+        <!-- Side navigation links -->
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                <squeezebox [multiple]="false" aria-multiselectable="false">
+                    <sb-item>
+                        <sb-item-head><i class="fa fa-chevron-right"></i> Submit blog</sb-item-head>
+                        <sb-item-body>
+                            <ul>
+                                <li><a href="#" class="waves-effect">Submit listing</a></li>
+                                <li><a href="#" class="waves-effect">Registration form</a></li>
+                            </ul>
+                        </sb-item-body>
+                    </sb-item>
+                    <sb-item>
+                        <sb-item-head><i class="fa fa-hand-pointer-o"></i> Instruction</sb-item-head>
+                        <sb-item-body>
+                            <ul>
+                                <li><a href="#" class="waves-effect">For bloggers</a></li>
+                                <li><a href="#" class="waves-effect">For authors</a></li>
+                            </ul>
+                        </sb-item-body>
+                    </sb-item>
+                    <sb-item>
+                        <sb-item-head><i class="fa fa-eye"></i> About</sb-item-head>
+                        <sb-item-body>
+                            <ul>
+                                <li><a href="#" class="waves-effect">Introduction</a></li>
+                                <li><a href="#" class="waves-effect">Monthly meetings</a></li>
+                            </ul>
+                        </sb-item-body>
+                    </sb-item>
+                    <sb-item>
+                        <sb-item-head><i class="fa fa-envelope-o"></i> Contact me</sb-item-head>
+                        <sb-item-body>
+                            <ul>
+                                <li><a href="#" class="waves-effect">FAQ</a></li>
+                                <li><a href="#" class="waves-effect">Write a message</a></li>
+                            </ul>
+                        </sb-item-body>
+                    </sb-item>
+                </squeezebox>
+            </ul>
+        </li>
+        <!--/. Side navigation links -->
+    </SideNav>
+    <breadcrumb>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Library</a></li>
+            <li class="breadcrumb-item active">Data</li>
+        </ol>
+    </breadcrumb>
+    <links>
+        <!-- SideNav slide-out button -->
+        <li class="nav-item">
+            <a class="nav-link"><i class="fa fa-envelope"></i> <span class="hidden-sm-down">Contact</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"><i class="fa fa-comments-o"></i> <span class="hidden-sm-down">Support</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"><i class="fa fa-user"></i> <span class="hidden-sm-down">Account</span></a>
+        </li>
+        <li class="nav-item dropdown btn-group" dropdown>
+            <a dropdownToggle ripple-radius type="button" class="nav-link dropdown-toggle">
+                Dropdown
+            </a>
+            <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+        </li>
+    </links>
+    <!-- /.Navbar -->
+</DoubleNavbar>
+<!--/.Double navigation-->
+
+<!--Main layout-->
+<main>
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</main>
+<!--/Main layout-->
+
+<!--Footer-->
+<footer class="page-footer center-on-small-only">
+
+    <!--Footer Links-->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--First column-->
+            <div class="col-md-3 offset-md-1">
+                <h5 class="title">Footer Content</h5>
+                <p>Here you can use rows and columns here to organize your footer content.</p>
+            </div>
+            <!--/.First column-->
+
+            <hr class="hidden-md-up">
+
+            <!--Second column-->
+            <div class="col-md-2 offset-md-1">
+                <h5 class="title">Links</h5>
+                <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                </ul>
+            </div>
+            <!--/.Second column-->
+
+            <hr class="hidden-md-up">
+
+            <!--Third column-->
+            <div class="col-md-2">
+                <h5 class="title">Links</h5>
+                <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                </ul>
+            </div>
+            <!--/.Third column-->
+
+            <hr class="hidden-md-up">
+
+            <!--Fourth column-->
+            <div class="col-md-2">
+                <h5 class="title">Links</h5>
+                <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                </ul>
+            </div>
+            <!--/.Fourth column-->
+
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <hr>
+
+    <!--Call to action-->
+    <div class="call-to-action">
+        <ul>
+            <li>
+                <h5>Register for free</h5>
+            </li>
+            <li><a href="#" class="btn btn-danger" ripple-radius>Sign up!</a></li>
+        </ul>
+    </div>
+    <!--/.Call to action-->
+
+    <hr>
+
+    <!--Social buttons-->
+    <div class="social-section">
+        <ul>
+            <li><a class="btn-floating btn-small btn-fb" ripple-radius><i class="fa fa-facebook"></i></a></li>
+            <li><a class="btn-floating btn-small btn-tw" ripple-radius><i class="fa fa-twitter"></i></a></li>
+            <li><a class="btn-floating btn-small btn-gplus" ripple-radius><i class="fa fa-google-plus"></i></a></li>
+            <li><a class="btn-floating btn-small btn-li" ripple-radius><i class="fa fa-linkedin"></i></a></li>
+            <li><a class="btn-floating btn-small btn-git" ripple-radius><i class="fa fa-github"></i></a></li>
+            <li><a class="btn-floating btn-small btn-pin" ripple-radius><i class="fa fa-pinterest"></i></a></li>
+            <li><a class="btn-floating btn-small btn-ins" ripple-radius><i class="fa fa-instagram"></i></a></li>
+        </ul>
+    </div>
+    <!--/.Social buttons-->
+
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © 2015 Copyright: <a href="https://www.thehawker.co.in"> thehawker.co.in </a>
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
