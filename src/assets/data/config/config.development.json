@@ -1,40 +1,118 @@
 {
 	"URL-PROPERTIES": {
 		"IP": "http://localhost",
-		"PORT": ":8095",
 		"THE-HAWKER": {
 			"BASE": "/hawker/rest",
-			"INVENTORY-MANAGEMENT": "/inventory-management"
-		},
-		"BRAND": {
-			"BASE": "/brands",
-			"LIST": "/list",
-			"CREATE": "/createBrand",
-			"GET-BY-ID": "/getByBrandId",
-			"GET-BY-CODE": "/getByBrandCode",
-			"GET-BY-NAME": "/getByBrandName",
-			"DELETE-BY-ID": "/deleteByBrandId",
-			"DELETE-BY-CODE": "/deleteByBrandCode",
-			"DELETE-BY-NAME": "/deleteByBrandName",
-			"UPDATE-BY-ID": "/updateByBrandId",
-			"UPDATE-BY-CODE": "/updateByBrandCode",
-			"UPDATE-BY-NAME": "/updateByBrandName"
-		},
-		"PRODUCT": {
-			"BASE": "/products",
-			"LIST": "/list",
-			"CREATE": "/createProduct",
-			"GET-BY-ID": "/getByProductId",
-			"DELETE-BY-ID": "/deleteByProductId",
-			"UPDATE-BY-ID": "/updateByProductId"
-		},
-		"TYPE": {
-			"BASE": "/types",
-			"LIST": "/list",
-			"CREATE": "/createType",
-			"GET-BY-ID": "/getByTypeId",
-			"DELETE-BY-ID": "/deleteByTypeId",
-			"UPDATE-BY-ID": "/updateByTypeId"
+			"INVENTORY-MANAGEMENT": {
+				"BASE": "/inventory-management",
+				"PORT": ":8095",
+				"BRAND": {
+					"BASE": "/brands",
+					"LIST": "/list",
+					"CREATE": "/createBrand",
+					"GET-BY-ID": "/getByBrandId",
+					"GET-BY-CODE": "/getByBrandCode",
+					"GET-BY-NAME": "/getByBrandName",
+					"DELETE-BY-ID": "/deleteByBrandId",
+					"DELETE-BY-CODE": "/deleteByBrandCode",
+					"DELETE-BY-NAME": "/deleteByBrandName",
+					"UPDATE-BY-ID": "/updateByBrandId",
+					"UPDATE-BY-CODE": "/updateByBrandCode",
+					"UPDATE-BY-NAME": "/updateByBrandName"
+				},
+				"PRODUCT": {
+					"BASE": "/products",
+					"LIST": "/list",
+					"CREATE": "/createProduct",
+					"GET-BY-ID": "/getByProductId",
+					"DELETE-BY-ID": "/deleteByProductId",
+					"UPDATE-BY-ID": "/updateByProductId"
+				},
+				"TYPE": {
+					"BASE": "/types",
+					"LIST": "/list",
+					"CREATE": "/createType",
+					"GET-BY-ID": "/getByTypeId",
+					"DELETE-BY-ID": "/deleteByTypeId",
+					"UPDATE-BY-ID": "/updateByTypeId"
+				}
+			},
+			"CUSTOMER-MANAGEMENT": {
+				"BASE": "/customer-management",
+				"PORT": ":8093",
+				"ADDRESS":{
+					"BASE": "/addresses",
+					"LIST": "/list",
+					"CREATE": "/createAddress",
+					"GET-BY-ID": "/getByAddressId",
+					"DELETE-BY-ID": "/deleteByAddressId",
+					"UPDATE-BY-ID": "/updateByAddressId"
+				},
+				"CREDENTIAL":{
+					"BASE": "/credentials",
+					"LIST": "/list",
+					"CREATE": "/createCredential",
+					"GET-BY-ID": "/getByCredentialId",
+					"DELETE-BY-ID": "/deleteByCredentialId",
+					"UPDATE-BY-ID": "/updateByCredentialId"
+				},
+				"FREQUENCY":{
+					"BASE": "/frequencies",
+					"LIST": "/list",
+					"CREATE": "/createFrequency",
+					"GET-BY-ID": "/getByFrequencyId",
+					"DELETE-BY-ID": "/deleteByFrequencyId",
+					"UPDATE-BY-ID": "/updateByFrequencyId"
+				},
+				"ORDER":{
+					"BASE": "/orders",
+					"LIST": "/list",
+					"CREATE": "/createOrder",
+					"GET-BY-ID": "/getByOrderId",
+					"DELETE-BY-ID": "/deleteByOrderId",
+					"UPDATE-BY-ID": "/updateByOrderId"
+				},
+				"ORDER-ITEM":{
+					"BASE": "/orderItems",
+					"LIST": "/list",
+					"CREATE": "/createOrderItem",
+					"GET-BY-ID": "/getByOrderItemId",
+					"DELETE-BY-ID": "/deleteByOrderItemId",
+					"UPDATE-BY-ID": "/updateByOrderItemId"
+				},
+				"PREFERENCE":{
+					"BASE": "/preferences",
+					"LIST": "/list",
+					"CREATE": "/createPreference",
+					"GET-BY-ID": "/getByPreferenceId",
+					"DELETE-BY-ID": "/deleteByPreferenceId",
+					"UPDATE-BY-ID": "/updateByPreferenceId"
+				},
+				"PREMISE":{
+					"BASE": "/premises",
+					"LIST": "/list",
+					"CREATE": "/createPremise",
+					"GET-BY-ID": "/getByPremiseId",
+					"DELETE-BY-ID": "/deleteByPremiseId",
+					"UPDATE-BY-ID": "/updateByPremiseId"
+				},
+				"PROFILE":{
+					"BASE": "/profiles",
+					"LIST": "/list",
+					"CREATE": "/createProfile",
+					"GET-BY-ID": "/getByProfileId",
+					"DELETE-BY-ID": "/deleteByProfileId",
+					"UPDATE-BY-ID": "/updateByProfileId"
+				},
+				"WALLET":{
+					"BASE": "/wallets",
+					"LIST": "/list",
+					"CREATE": "/createWallet",
+					"GET-BY-ID": "/getByWalletId",
+					"DELETE-BY-ID": "/deleteByWalletId",
+					"UPDATE-BY-ID": "/updateByWalletId"
+				}
+			}
 		}
 	}
 }

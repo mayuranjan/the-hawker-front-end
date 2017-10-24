@@ -4,24 +4,26 @@ import { Observable } from 'rxjs/Rx';
 import { Http, Response } from '@angular/http';
 
 export abstract class BaseUrl implements IURL {
-    _moduleCanonicalURL = "THE-HAWKER." + this._moduleName;
-    _entityCanonicalURL = this._entityName + ".BASE";
-    _createCanonicalURL = this._entityName + ".CREATE";
-    _listCanonicalURL = this._entityName + ".LIST";
-    _readCanonicalURL = this._entityName + ".READ-BY-ID";
-    _updateCanonicalURL = this._entityName + ".UPDATE-BY-ID";
-    _deleteCanonicalURL = this._entityName + ".DELETE-BY-ID";
+    _moduleCanonicalName = "THE-HAWKER." + this._moduleName;
+    _moduleCanonicalURL = "THE-HAWKER." + this._moduleName + ".BASE";
+    _moduleCanonicalPORT = "THE-HAWKER." + this._moduleName + ".PORT";
+    _entityCanonicalURL = this._moduleCanonicalName + "." + this._entityName + ".BASE";
+    _createCanonicalURL = this._moduleCanonicalName + "." + this._entityName + ".CREATE";
+    _listCanonicalURL = this._moduleCanonicalName + "." + this._entityName + ".LIST";
+    _readCanonicalURL = this._moduleCanonicalName + "." + this._entityName + ".READ-BY-ID";
+    _updateCanonicalURL = this._moduleCanonicalName + "." + this._entityName + ".UPDATE-BY-ID";
+    _deleteCanonicalURL = this._moduleCanonicalName + "." + this._entityName + ".DELETE-BY-ID";
 
     protected urlProperties = {};
 
     constructor(public _http: Http, public _config: TheHawkerConfig, protected _moduleName: string, protected _entityName: string) { }
 
     protected apiBaseUrl() {
-        return this._config.readCanonicalURLProperties("IP") + this._config.readCanonicalURLProperties("PORT") + this._config.readCanonicalURLProperties("THE-HAWKER.BASE");
+        return this._config.readCanonicalURLProperties("IP");
     }
 
     protected moduleUrl(): string {
-        return this.apiBaseUrl() + this._config.readCanonicalURLProperties(this._moduleCanonicalURL);
+        return this.apiBaseUrl() + this._config.readCanonicalURLProperties(this._moduleCanonicalPORT) + this._config.readCanonicalURLProperties("THE-HAWKER.BASE") + this._config.readCanonicalURLProperties(this._moduleCanonicalURL);
     }
 
     protected entityUrl(): string {

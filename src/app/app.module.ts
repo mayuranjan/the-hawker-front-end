@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TheHawkerConfig } from 'app/config/TheHawkerConfig';
 import { CoreModule } from './the-hawker/CORE/CORE.module';
 import { InventoryManagementModule } from './the-hawker/InventoryManagement/InventoryManagement.module';
+import { CustomerManagementModule } from 'app/the-hawker/CustomerManagement/CustomerManagement.module';
 import { TheHawkerRouter } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
     CoreModule,
     InventoryManagementModule,
+    CustomerManagementModule,
     // AgmCoreModule.forRoot({
     //   apiKey: 'google_maps_api_key'
     // })

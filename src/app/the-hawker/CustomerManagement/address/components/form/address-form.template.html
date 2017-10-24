@@ -1,0 +1,83 @@
+<form id="addAddressForm" #addAddressForm="ngForm" class="col s12" (ngSubmit)="onSubmit()">
+    <!--Header-->
+    <form-header>
+
+    </form-header>
+
+    <!--Body-->
+    <form-body>
+        <div class="md-form form-sm">
+            <i class="fa fa-info prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="flatNumber" name="flatNumber" type="text" class="validate form-control"
+                required minlength="1" maxlength="5" [(ngModel)]=entity.flatNumber #flatNumber="ngModel">
+            <label for="flatNumber">Flat Number</label>
+            <div *ngIf="flatNumber.errors && (flatNumber.dirty || flatNumber.touched)">
+                <div [hidden]="!flatNumber.errors.required">
+                    <small class="text-danger">Flat Number is required.</small>
+                </div>
+                <div [hidden]="!flatNumber.errors.minlength">
+                    <small class="text-danger">Flat Number must be at least 1 characters long.</small>
+                </div>
+                <div [hidden]="!flatNumber.errors.maxlength">
+                    <small class="text-danger">Flat Number cannot be more than 5 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-info prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="floorNumber" name="floorNumber" type="text" class="validate form-control"
+                required minlength="1" maxlength="6" [(ngModel)]=entity.floorNumber #floorNumber="ngModel">
+            <label for="floorNumber">Floor Number</label>
+            <div *ngIf="floorNumber.errors && (floorNumber.dirty || floorNumber.touched)">
+                <div [hidden]="!floorNumber.errors.required">
+                    <small class="text-danger">Floor Number is required.</small>
+                </div>
+                <div [hidden]="!floorNumber.errors.minlength">
+                    <small class="text-danger">Floor Number must be at least 1 characters long.</small>
+                </div>
+                <div [hidden]="!floorNumber.errors.maxlength">
+                    <small class="text-danger">Floor Number cannot be more than 6 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-info prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="blockNumber" name="blockNumber" type="text" class="validate form-control"
+                minlength="1" maxlength="5" [(ngModel)]=entity.blockNumber #blockNumber="ngModel">
+            <label for="blockNumber">Block Number</label>
+            <div *ngIf="blockNumber.errors && (blockNumber.dirty || blockNumber.touched)">
+                <div [hidden]="!blockNumber.errors.minlength">
+                    <small class="text-danger">Block Number must be at least 1 characters long.</small>
+                </div>
+                <div [hidden]="!blockNumber.errors.maxlength">
+                    <small class="text-danger">Block Number cannot be more than 5 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="md-form form-sm">
+            <i class="fa fa-info prefix"></i>
+            <input [mdbActive]="mode.add" [disabled]="mode.view" id="towerNumber" name="towerNumber" type="text" class="validate form-control" required
+                minlength="1" maxlength="5" [(ngModel)]=entity.towerNumber #towerNumber="ngModel">
+            <label for="towerNumber">Tower Number</label>
+            <div *ngIf="towerNumber.errors && (towerNumber.dirty || towerNumber.touched)">
+                <div [hidden]="!towerNumber.errors.minlength">
+                    <small class="text-danger">Tower Number must be at least 1 characters long.</small>
+                </div>
+                <div [hidden]="!towerNumber.errors.maxlength">
+                    <small class="text-danger">Tower Number cannot be more than 5 characters long.</small>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form-body>
+
+    <!--Footer-->
+    <form-footer>
+        <div class="md-form">
+            <button *ngIf="mode.add || mode.update" [disabled]="!addAddressForm.valid" type="submit" class="btn btn-primary" ripple-radius>{{mode.operation}}</button>
+        </div>
+    </form-footer>
+</form>

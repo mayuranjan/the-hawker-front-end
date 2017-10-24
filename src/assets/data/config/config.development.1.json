@@ -1,0 +1,40 @@
+{
+	"URL-PROPERTIES": {
+		"IP": "http://localhost",
+		"PORT": ":8095",
+		"THE-HAWKER": {
+			"BASE": "/hawker/rest",
+			"INVENTORY-MANAGEMENT": "/inventory-management"
+		},
+		"BRAND": {
+			"BASE": "/brands",
+			"LIST": "/list",
+			"CREATE": "/createBrand",
+			"GET-BY-ID": "/getByBrandId",
+			"GET-BY-CODE": "/getByBrandCode",
+			"GET-BY-NAME": "/getByBrandName",
+			"DELETE-BY-ID": "/deleteByBrandId",
+			"DELETE-BY-CODE": "/deleteByBrandCode",
+			"DELETE-BY-NAME": "/deleteByBrandName",
+			"UPDATE-BY-ID": "/updateByBrandId",
+			"UPDATE-BY-CODE": "/updateByBrandCode",
+			"UPDATE-BY-NAME": "/updateByBrandName"
+		},
+		"PRODUCT": {
+			"BASE": "/products",
+			"LIST": "/list",
+			"CREATE": "/createProduct",
+			"GET-BY-ID": "/getByProductId",
+			"DELETE-BY-ID": "/deleteByProductId",
+			"UPDATE-BY-ID": "/updateByProductId"
+		},
+		"TYPE": {
+			"BASE": "/types",
+			"LIST": "/list",
+			"CREATE": "/createType",
+			"GET-BY-ID": "/getByTypeId",
+			"DELETE-BY-ID": "/deleteByTypeId",
+			"UPDATE-BY-ID": "/updateByTypeId"
+		}
+	}
+}
