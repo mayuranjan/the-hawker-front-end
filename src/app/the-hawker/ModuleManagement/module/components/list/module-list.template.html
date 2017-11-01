@@ -1,0 +1,46 @@
+<!--Projects section v.2-->
+<section class="section text-center">
+
+    <!--Section heading-->
+    <h2 class="section-heading h1 pt-4">
+        <strong>The Hawker - Modules</strong>
+    </h2>
+    <!--Section description-->
+    <p class="section-description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center">
+
+        <!--Grid column-->
+        <div *ngFor="let module of entityList" class="col-lg-6 col-xl-5 mb-3">
+
+            <!--Featured image-->
+            <div class="view overlay hm-white-slight z-depth-2">
+
+                <img [src]=module.imagePath height="500" width="800" class="img-fluid" alt="Sample project image">
+
+                <a>
+                    <div class="mask"></div>
+                </a>
+            </div>
+
+            <!--Excerpt-->
+            <div class="card-body">
+                <a href="" class="green-text">
+                    <h5>
+                        <i [class]="module.icon"></i> {{module.header}}</h5>
+                </a>
+                <h4>{{module.title}}</h4>
+                <p>{{module.description}}</p>
+                <a class="btn btn-success btn-rounded"> View more</a>
+            </div>
+
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+</section>
+<!--/Projects section v.2-->

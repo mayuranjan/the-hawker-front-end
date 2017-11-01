@@ -8,10 +8,10 @@ export abstract class BaseComponentList {
 
     protected entityList: Object[];
     protected mode: FormMode;
-    protected selectedEntity:Object = this.entity;
+    protected selectedEntity: Object = this.entity;
     protected isModalVisible: boolean = false;
 
-    constructor(protected entity: Object, private idField: string) {  }
+    constructor(protected entity: Object, private idField: string) { }
 
     ngOnInit() {
         this.listAll();
@@ -26,6 +26,12 @@ export abstract class BaseComponentList {
     protected addOptionIconsToEntities(entityList: Object[]): void {
         entityList.forEach(element => {
             element['optionIcon'] = 'inactive';
+        });
+    }
+
+    protected addObjectNameToEntities(entityList: Object[], entity): void {
+        entityList.forEach(element => {
+            element['name'] = entity.name;
         });
     }
 

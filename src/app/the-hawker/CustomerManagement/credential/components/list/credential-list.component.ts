@@ -1,49 +1,50 @@
 import { FormMode } from 'app/the-hawker/CORE/models/formMode';
+import { element } from 'protractor';
 import { iconsState } from './../../../../../typescripts/angular-bootstrap-md/pro/animations/animations';
 import { Component, EventEmitter, Injector, Input, Output, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import swal from 'sweetalert2';
 import { ModalDirective } from "app/typescripts/angular-bootstrap-md/free";
 import { BaseComponentList } from "app/the-hawker/CORE/abstracts/base-component-list";
-import { TypeService } from "app/the-hawker/InventoryManagement/type/services/type.service";
-import { Type } from "app/the-hawker/InventoryManagement/type/models/type";
+import { CredentialService } from 'app/the-hawker/CustomerManagement/credential/services/credential.service';
+import { Credential } from 'app/the-hawker/CustomerManagement/credential/models/credential';
 
 @Component({
-    selector: 'type-list',
-    templateUrl: './type-list.template.html',
-    styleUrls: ['./type-list.template.css'],
-    providers: [TypeService],
+    selector: 'credential-list',
+    templateUrl: './credential-list.template.html',
+    styleUrls: ['./credential-list.template.css'],
+    providers: [CredentialService],
     animations: [iconsState]
 })
-export class TypeListComponent extends BaseComponentList {
-    static key = TypeListComponent.name;
+export class CredentialListComponent extends BaseComponentList {
+    static key = CredentialListComponent.name;
 
-    constructor(private _typeService: TypeService) {
-        super(new Type(), 'typeId');
+    constructor(private _credentialService: CredentialService) {
+        super(new Credential(), 'credentialId');
     }
 
     protected listAll(): void {
-        this._typeService.list().subscribe(response => {
+        this._credentialService.list().subscribe(response => {
             if (response.status == 'Success') {
                 this.entityList = response.object;
                 this.addOptionIconsToEntities(this.entityList);
-                this.addObjectNameToEntities(this.entityList, new Type());
+                this.addObjectNameToEntities(this.entityList, new Credential());
             }
         });
     }
 
-    protected read(type: Type): void {
+    protected read(credential: Credential): void {
         this.mode = new FormMode('view');
-        this.selectedEntity = type;
+        this.selectedEntity = credential;
         this.showModal();
     }
 
-    protected update(type: Type): void {
+    protected update(credential: Credential): void {
         this.mode = new FormMode('update');
-        this.selectedEntity = type;
+        this.selectedEntity = credential;
         this.showModal();
     }
 
-    protected delete(type: Type): void {
+    protected delete(credential: Credential): void {
         swal({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -57,13 +58,13 @@ export class TypeListComponent extends BaseComponentList {
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false
         }).then(() => {
-            this._typeService.delete(type['typeId'].toString()).subscribe(response => {
+            this._credentialService.delete(credential.credentialId.toString()).subscribe(response => {
                 switch (response.status) {
                     case 'Success':
                         this.listAll();
                         swal({
                             title: response.status,
-                            text: type['typeName'] + " deleted Successfully",
+                            text: "Credential deleted Successfully",
                             type: 'success',
                             showCancelButton: true,
                             confirmButtonColor: "#ffb606",
@@ -72,7 +73,7 @@ export class TypeListComponent extends BaseComponentList {
                         break;
                     case 'Failure':
                         swal({
-                            title: "Delete " + this.entity['name'],
+                            title: "Delete Credential",
                             text: response.message,
                             type: 'error',
                             showCancelButton: true,
@@ -100,7 +101,7 @@ export class TypeListComponent extends BaseComponentList {
             if (dismiss === 'cancel') {
                 swal(
                     'Cancelled',
-                    'Your ' + this.entity['name'] + ' is safe.',
+                    'Your Credential is safe.',
                     'info'
                 )
             }

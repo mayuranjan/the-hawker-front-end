@@ -15,13 +15,7 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { CoreModule } from '../CORE/CORE.module';
-
-import { AddressListComponent } from './address/components/list/address-list.component';
-import { AddressAddComponent } from './address/components/add/address-add.component';
-import { AddressFormComponent } from './address/components/form/address-form.component';
-import { CredentialFormComponent } from 'app/the-hawker/CustomerManagement/credential/components/form/credential-form.component';
-import { CredentialAddComponent } from 'app/the-hawker/CustomerManagement/credential/components/add/CREDENTIAL-add.component';
-import { CredentialListComponent } from 'app/the-hawker/CustomerManagement/credential/components/list/credential-list.component';
+import { ModuleListComponent } from 'app/the-hawker/ModuleManagement/module/components/list/module-list.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -30,12 +24,7 @@ export function HttpLoaderFactory(http: Http) {
 
 @NgModule({
     declarations: [
-        AddressListComponent,
-        AddressAddComponent,
-        AddressFormComponent,
-        CredentialListComponent,
-        CredentialAddComponent,
-        CredentialFormComponent
+        ModuleListComponent
     ],
     imports: [
         CoreModule,
@@ -58,21 +47,11 @@ export function HttpLoaderFactory(http: Http) {
     ],
     schemas: [NO_ERRORS_SCHEMA],
     exports: [
-        AddressListComponent,
-        AddressAddComponent,
-        AddressFormComponent,
-        CredentialListComponent,
-        CredentialAddComponent,
-        CredentialFormComponent
+        ModuleListComponent
     ],
     providers: [],
     entryComponents: [
-        AddressListComponent,
-        AddressAddComponent,
-        AddressFormComponent,
-        CredentialListComponent,
-        CredentialAddComponent,
-        CredentialFormComponent
+        ModuleListComponent
     ],
 })
-export class CustomerManagementModule { }
+export class ModuleManagementModule { }

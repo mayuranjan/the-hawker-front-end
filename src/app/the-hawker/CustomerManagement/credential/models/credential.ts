@@ -6,7 +6,9 @@ export class Credential extends BaseEntityObject implements IEntityObject {
     public credentialId: number;
     public accountType: string;
     public emailId: string;
-    public masterCredentialId: string;
+    public masterAccount: string;
+    public childAccounts: Array<string>;
     public mobileNumber: string;
     public username: string;
+    public password: string;
 }

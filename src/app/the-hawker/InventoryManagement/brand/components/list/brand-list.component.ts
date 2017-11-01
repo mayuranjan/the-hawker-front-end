@@ -27,6 +27,7 @@ export class BrandListComponent extends BaseComponentList {
             if (response.status == 'Success') {
                 this.entityList = response.object;
                 this.addOptionIconsToEntities(this.entityList);
+                this.addObjectNameToEntities(this.entityList, new Brand());
             }
         });
     }
