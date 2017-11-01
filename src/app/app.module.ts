@@ -12,6 +12,7 @@ import { TheHawkerConfig } from 'app/config/TheHawkerConfig';
 import { TheHawkerRouter } from 'app/app.routes';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from "@angular/http";
+import { BreadcrumbModule } from 'angular2-crumbs';
 
 import { MDBBootstrapModule } from './typescripts/angular-bootstrap-md/free';
 import { MDBBootstrapModulePro } from './typescripts/angular-bootstrap-md/pro';
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(http: Http) {
   ],
   imports: [
     BrowserModule,
+    BreadcrumbModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
@@ -65,7 +67,7 @@ export function HttpLoaderFactory(http: Http) {
   ],
   providers: [TheHawkerConfig,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-  { provide: APP_INITIALIZER, useFactory: (config: TheHawkerConfig) => () => config.load(), deps: [TheHawkerConfig], multi: true }
+    { provide: APP_INITIALIZER, useFactory: (config: TheHawkerConfig) => () => config.load(), deps: [TheHawkerConfig], multi: true }
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

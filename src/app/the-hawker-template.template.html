@@ -81,11 +81,14 @@
         </li>
         <!--/. Side navigation links -->
     </SideNav>
-    <breadcrumb>
+    <breadcrumb #parent>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Library</a></li>
-            <li class="breadcrumb-item active">Data</li>
+            <li class="breadcrumb-item">
+                <template ngFor let-route [ngForOf]="parent.breadcrumbs">
+                    <a *ngIf="!route.terminal" class="breadcrumb-item" href="" [routerLink]="[route.url]">{{ route.displayName }}</a>
+                    <span *ngIf="route.terminal" class="breadcrumb-item active">{{ route.displayName }}</span>
+                </template>
+            </li>
         </ol>
     </breadcrumb>
     <links>

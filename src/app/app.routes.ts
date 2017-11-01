@@ -16,21 +16,21 @@ import { SubModuleListComponent } from 'app/the-hawker/ModuleManagement/sub-modu
 
 export const TheHawkerRouter: Routes = [
     {
-        path: 'hawker', component: TheHawkerTemplate,
+        path: 'hawker', component: TheHawkerTemplate, data: { breadcrumb: 'Home' },
         children: [
             // ***** Module Management - Module *****
-            { path: 'ModuleManagement/Module', component: ModuleListComponent },
-            { path: 'ModuleManagement/SubModule/:moduleId', component: SubModuleListComponent },
+            { path: 'ModuleManagement/Module', component: ModuleListComponent, data: { breadcrumb: 'Module' } },
+            { path: 'ModuleManagement/SubModule/:moduleId', component: SubModuleListComponent, data: { breadcrumb: 'Sub-Module' } },
 
             // ***** Inventory Management - Brand *****
-            { path: 'InventoryManagement/Brand', component: BrandListComponent },
-            { path: 'InventoryManagement/Brand/List', component: BrandListComponent },
-            { path: 'InventoryManagement/Brand/Add', component: BrandAddComponent },
+            { path: 'InventoryManagement/Brand', component: BrandListComponent, data: { breadcrumb: 'Brand'} },
+            { path: 'InventoryManagement/Brand/List', component: BrandListComponent, data: { breadcrumb: 'Brand - List'} },
+            { path: 'InventoryManagement/Brand/Add', component: BrandAddComponent, data: { breadcrumb: 'Brand - Add'} },
 
             // ***** Inventory Management - Type *****
-            { path: 'InventoryManagement/Type', component: TypeListComponent },
-            { path: 'InventoryManagement/Type/List', component: TypeListComponent },
-            { path: 'InventoryManagement/Type/Add', component: TypeAddComponent },
+            { path: 'InventoryManagement/Type', component: TypeListComponent, data: { breadcrumb: 'Type'} },
+            { path: 'InventoryManagement/Type/List', component: TypeListComponent, data: { breadcrumb: 'Type - List'} },
+            { path: 'InventoryManagement/Type/Add', component: TypeAddComponent, data: { breadcrumb: 'Type - Add'} },
 
             // ***** Inventory Management - Product *****
             { path: 'InventoryManagement/Product', component: ProductListComponent },
