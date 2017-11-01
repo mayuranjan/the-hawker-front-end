@@ -1,0 +1,50 @@
+<!--Projects section v.1-->
+<section class="section pb-3">
+
+    <!--Section heading-->
+    <h2 class="section-heading h1 pt-4">
+        <strong>The Hawker - Inventory Management</strong>
+    </h2>
+
+    <!--Section description-->
+    <p class="section-description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <!--Grid row-->
+    <div class="row text-center">
+
+        <!--Grid column-->
+        <div *ngFor="let subModule of entityList" class="col-lg-4 col-md-12 mb-r">
+
+            <!--Featured image-->
+            <div class="view overlay hm-white-slight z-depth-2 waves-light" mdbRippleRadius>
+
+                <img [src]=subModule.imagePath alt="Sample project image">
+
+                <a (click)="openSubModule(subModule.id)">
+                    <div class="mask"></div>
+                </a>
+            </div>
+
+            <!--Excerpt-->
+            <div class="card-body mt-1">
+                <a href="" class="pink-text">
+                    <h5>
+                        <i [class]="subModule.icon"></i> {{subModule.title}}</h5>
+                </a>
+                <h4>{{subModule.header}}</h4>
+                <p>{{subModule.description}}</p>
+                <a (click)="openSubModule(subModule.id, 'add')" class="btn btn-indigo btn-sm waves-light" mdbRippleRadius>
+                    <i class="fa fa-plus left"></i> Add</a>
+                <a (click)="openSubModule(subModule.id, 'list')" class="btn btn-cyan btn-sm waves-light" mdbRippleRadius>
+                    <i class="fa fa-list left"></i> View</a>
+            </div>
+
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+</section>
+<!--/Projects section v.1-->

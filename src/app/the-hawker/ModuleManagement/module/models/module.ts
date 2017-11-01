@@ -3,6 +3,8 @@ import { SubModule } from "app/the-hawker/ModuleManagement/sub-module/models/sub
 
 export class Module implements IEntityObject {
     public name: string = Module.name;
+    public id: string;
+    public orderNumber: number;
     public imagePath: string;
     public icon: string;
     public header: string;

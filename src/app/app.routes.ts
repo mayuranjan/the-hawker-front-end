@@ -12,6 +12,7 @@ import { AddressListComponent } from 'app/the-hawker/CustomerManagement/address/
 import { CredentialListComponent } from 'app/the-hawker/CustomerManagement/credential/components/list/credential-list.component';
 import { CredentialAddComponent } from 'app/the-hawker/CustomerManagement/credential/components/add/CREDENTIAL-add.component';
 import { ModuleListComponent } from 'app/the-hawker/ModuleManagement/module/components/list/module-list.component';
+import { SubModuleListComponent } from 'app/the-hawker/ModuleManagement/sub-module/components/list/sub-module-list.component';
 
 export const TheHawkerRouter: Routes = [
     {
@@ -19,7 +20,7 @@ export const TheHawkerRouter: Routes = [
         children: [
             // ***** Module Management - Module *****
             { path: 'ModuleManagement/Module', component: ModuleListComponent },
-            // { path: 'ModuleManagement/SubModule', component: SubModuleListComponent },
+            { path: 'ModuleManagement/SubModule/:moduleId', component: SubModuleListComponent },
 
             // ***** Inventory Management - Brand *****
             { path: 'InventoryManagement/Brand', component: BrandListComponent },

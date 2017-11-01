@@ -16,6 +16,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { CoreModule } from '../CORE/CORE.module';
 import { ModuleListComponent } from 'app/the-hawker/ModuleManagement/module/components/list/module-list.component';
+import { SubModuleListComponent } from 'app/the-hawker/ModuleManagement/sub-module/components/list/sub-module-list.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -24,7 +25,8 @@ export function HttpLoaderFactory(http: Http) {
 
 @NgModule({
     declarations: [
-        ModuleListComponent
+        ModuleListComponent,
+        SubModuleListComponent,
     ],
     imports: [
         CoreModule,
@@ -47,11 +49,13 @@ export function HttpLoaderFactory(http: Http) {
     ],
     schemas: [NO_ERRORS_SCHEMA],
     exports: [
-        ModuleListComponent
+        ModuleListComponent,
+        SubModuleListComponent,
     ],
     providers: [],
     entryComponents: [
-        ModuleListComponent
+        ModuleListComponent,
+        SubModuleListComponent,
     ],
 })
 export class ModuleManagementModule { }

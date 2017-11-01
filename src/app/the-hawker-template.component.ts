@@ -48,47 +48,10 @@ export class TheHawkerTemplate {
         }
     }
 
-
-    public isHidden() {
-        let currentmodule = this._router.url.split('/')[2]
-
-        if (currentmodule == "home") {
-
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     public languageSelect(language) {
         this.selectedLanguage = language;
         this.translate.use(this.selectedLanguage);
         Cookie.set('ngTransLanguage', language);
-    }
-
-    backhome() {
-        let currentroute = this._router.url.split('/')[3]
-        this.getTranslate().subscribe(response => {
-            this.langTranslate = response;
-            if (currentroute == 'updateLayout' || currentroute == 'createLayout') {
-                swal({
-                    title: this.langTranslate.SWAL.WARNINGTITLE,
-                    text: this.langTranslate.SWAL.WARNINGREDIRECT,
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: "#ffb606",
-                    confirmButtonText: this.langTranslate.SWAL.WARNINGCONFIRMBUTTON,
-                    closeOnConfirm: true
-                }, (isConfirm) => {
-                    if (isConfirm) {
-                        this._router.navigate(['/enliven/home'])
-                    } else { }
-                });
-            } else {
-                this._router.navigate(['/enliven/home']);
-            }
-        });
     }
 
 }
